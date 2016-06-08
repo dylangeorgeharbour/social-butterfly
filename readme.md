@@ -3,7 +3,7 @@
 
 This is a quick implementation of the Socialite package for Laravel. It should help as a quick start guide or bootstrap code to getting your users signing in with Social apps like facebook, github or twitter. This is in no way a complete production ready solution, more testing and tightening up is required but it should get you started in the right direction. 
 
-I've put this together as a helpful guide for people looking to add in Socialite to their app. I found the socialite documentaiton quite limited and had to learn piece most of it together from other sources. Thanks to rappasoft for the excellent laravel-5-boilerplate project which helped a lot in my understanding of this. If you're looking for a more comprehensive app, I suggest you look there.  However, if you just want to understand and implement Socialite thiis might work for you. 
+I've put this together as a helpful guide for people looking to add in Socialite to their app. I found the socialite documentaiton quite limited and had to piece most of it together from other sources. Thanks to rappasoft for the excellent laravel-5-boilerplate project which helped a lot in my understanding of this. If you're looking for a more comprehensive app, I suggest you look there.  However, if you just want to understand and implement Socialite thiis might work for you. 
 
 ## Installation:
 
@@ -454,4 +454,23 @@ Put the relevant client_id's etc into your .env file.
     TWITTER_REDIRECT=
 
 
+#### Step 8: Add the links to your login page. 
+Lastly, add the following code to your Login page directly or with a view partial. 
 
+I did this just above the login button. 
+
+
+````
+    <hr />
+    <p class="text-center">
+    or log in with
+    <ul class="list list-inline text-center">
+        @foreach (\App\SocialLogin::getAvailableProviders() as $provider)
+            <li><a href="{!!  route('auth.social.redirect', [ $provider])  !!}">{{ $provider }}</a></li>
+        @endforeach
+    
+    </ul>
+    
+    </p>
+    <hr />
+````
