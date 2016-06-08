@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\ModelTraits\UserSocialiteTrait;
+
 
 class User extends Authenticatable
 {
+
+    use UserSocialiteTrait;
     /**
      * The attributes that are mass assignable.
      *
@@ -23,4 +27,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
 }
+
+
+
+
+

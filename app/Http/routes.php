@@ -22,16 +22,7 @@ Route::get('/home', 'HomeController@index');
 
 
 //Social Login
-Route::get('/login/{provider}',[
-    'uses' => 'AuthController@getSocialAuth',
-    'as'   => 'auth.getSocialAuth'
-]);
+Route::get('/login/{provider}', 'Auth\AuthController@socialAuthRedirect')->name('auth.social.redirect');
+Route::get('/login/{provider}/callback', 'Auth\AuthController@socialAuthCallback')->name('auth.social.callback');
 
-
-
-
-Route::get('/login/{provider}/callback',[
-    'uses' => 'AuthController@getSocialAuthCallback',
-    'as'   => 'auth.getSocialAuthCallback'
-]);
 
